@@ -1,0 +1,167 @@
+@model AdminCreateUserViewModel
+
+<h3 class="page-title">
+    مدیریت کاربران
+</h3>
+
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a asp-controller="Home" asp-action="Index"> داشبرد</a>
+            <i class="fa fa-angle-left"></i>
+        </li>
+        <li>
+            <i class="fa fa-shield"></i>
+            <a href="#"> امنیت</a>
+            <i class="fa fa-angle-left"></i>
+        </li>
+        <li>
+            <i class="fa fa-users"></i>
+            کاربران
+        </li>
+
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+
+            <div class="portlet-title">
+
+                <div class="caption">
+                    <i class="icon-plus font-yellow-casablanca"></i>
+                    <span class="caption-subject bold font-yellow-casablanca uppercase">
+                        ایجاد کاربر جدید
+                    </span>
+                    <span class="caption-helper"></span>
+                </div>
+
+            </div>
+
+            <div class="portlet-body form">
+                <form id="myform" 
+                    asp-controller="User"
+                    asp-action="New"
+                    asp-antiforgery="true"
+                    class="form-horizontal"
+                    enctype="multipart/form-data"
+                    method="post">    
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="form-group">
+                                <label asp-for="UserName" class="col-md-2 control-label">نام کاربری</label>
+                                @* <label asp-for="UserName" class="col-md-2 control-label"></label> *@
+                                <div class="col-md-10">
+                                    <div class="input-inline">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            <input asp-for="UserName" class="form-control" style="direction: ltr;" />
+                                        </div>
+                                    </div>
+                                    <span asp-validation-for="UserName" class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Password" class="col-md-2 control-label">کلمه عبور</label>
+                                @* <label asp-for="Password" class="col-md-2 control-label"></label> *@
+                                <div class="col-md-10">
+                                    <div class="input-inline">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-key"></i>
+                                            </span>
+                                    <input asp-for="Password" class="form-control" type="password" style="direction: ltr;" />
+                                        </div>
+                                    </div>
+                                    <span asp-validation-for="Password" class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Email" class="col-md-2 control-label">ایمیل</label>
+                                @* <label asp-for="Email" class="col-md-2 control-label"></label> *@
+                                <div class="col-md-10">
+                                    <div class="input-inline">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-envelope"></i>
+                                            </span>
+                                    <input asp-for="Email" type="Email" class="form-control" style="direction: ltr;" />
+                                        </div>
+                                    </div>
+                                    <span asp-validation-for="Email" class="help-block"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="Title" class="col-md-2 control-label">نام کاربر</label>
+                                @* <label asp-for="Title" class="col-md-2 control-label"></label> *@
+                                <div class="col-md-10">
+                                    <input asp-for="Title" class="form-control" />
+                                    <span asp-validation-for="Title" class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="PhoneNumber" class="col-md-2 control-label">تلفن همراه</label>
+                                @* <label asp-for="PhoneNumber" class="col-md-2 control-label"></label> *@
+                                <div class="col-md-10">
+                                    <input asp-for="PhoneNumber" class="form-control" style="direction: ltr;" />
+                                    <span asp-validation-for="PhoneNumber" class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="WebUrl" class="col-md-2 control-label">آدرس سایت</label>
+                                @* <label asp-for="WebUrl" class="col-md-2 control-label"></label> *@
+                                <div class="col-md-10">
+                                    <input asp-for="WebUrl" class="form-control" style="direction: ltr;" />
+                                    <span asp-validation-for="WebUrl" class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Description" class="col-md-2 control-label">توضیحات</label>
+                                @* <label asp-for="Description" class="col-md-2 control-label"></label> *@
+                                <div class="col-md-10">
+                                    <input asp-for="Description" class="form-control" />
+                                    <span asp-validation-for="Description" class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Enabled" class="col-md-2 control-label">فعال</label>
+                                @* <label asp-for="Enabled" class="col-md-2 control-label"></label> *@
+                                <div class="col-md-10">
+                                    <input asp-for="Enabled" type="checkbox" class="form-control checkbox" />
+                                    <span class="btn-block" asp-validation-for="Enabled"></span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button type="submit" id="btnSubmit" class="btn green">
+                                            <span class="md-click-circle md-click-animate"></span>
+                                            <i class="fa fa-check"></i> ذخیره
+                                        </button>
+                                        <a class="btn default">
+                                            <i class="fa fa-remove"></i> انصراف
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

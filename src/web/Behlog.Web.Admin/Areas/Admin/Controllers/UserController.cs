@@ -67,10 +67,10 @@ namespace Behlog.Web.Admin.Controllers {
                 );
         }
 
-        [HttpGet]
-        public async Task<IActionResult> New() {
-
-            return View();
+        [HttpGet("new")]
+        public IActionResult New() {
+            var model = new AdminCreateUserViewModel();
+            return View(model);
         }
 
         
