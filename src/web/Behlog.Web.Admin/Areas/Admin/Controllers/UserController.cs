@@ -73,6 +73,9 @@ namespace Behlog.Web.Admin.Controllers {
             return View(model);
         }
 
-        
+        [HttpGet("{username}")]
+        public IActionResult Edit(string username) {
+            return View();
+        }
     }
 }

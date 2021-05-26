@@ -32,7 +32,7 @@
                 <div class="caption">
                     <i class="icon-plus font-yellow-casablanca"></i>
                     <span class="caption-subject bold font-yellow-casablanca uppercase">
-                        ایجاد کاربر جدید
+                         ویرایش کاربر
                     </span>
                     <span class="caption-helper"></span>
                 </div>
@@ -64,38 +64,7 @@
                                     <span asp-validation-for="UserName" class="help-block"></span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Password" class="col-md-2 control-label">کلمه عبور</label>
-                                @* <label asp-for="Password" class="col-md-2 control-label"></label> *@
-                                <div class="col-md-10">
-                                    <div class="input-inline">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-key"></i>
-                                            </span>
-                                    <input asp-for="Password" class="form-control" type="password" style="direction: ltr;" />
-                                        </div>
-                                    </div>
-                                    <span asp-validation-for="Password" class="help-block"></span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label asp-for="VerifyPassword" class="col-md-2 control-label">تایید کلمه عبور</label>
-                                @* <label asp-for="Password" class="col-md-2 control-label"></label> *@
-                                <div class="col-md-10">
-                                    <div class="input-inline">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-key"></i>
-                                            </span>
-                                    <input asp-for="VerifyPassword" class="form-control" type="password" style="direction: ltr;" />
-                                        </div>
-                                    </div>
-                                    <span asp-validation-for="VerifyPassword" class="help-block"></span>
-                                </div>
-                            </div>
-
+                            
                             <div class="form-group">
                                 <label asp-for="Email" class="col-md-2 control-label">ایمیل</label>
                                 @* <label asp-for="Email" class="col-md-2 control-label"></label> *@
@@ -105,7 +74,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-envelope"></i>
                                             </span>
-                                    <input asp-for="Email" type="Email" class="form-control" style="direction: ltr;" />
+                                    <input asp-for="Email" placeholder="info@site.com" type="Email" class="form-control" style="direction: ltr;" />
                                         </div>
                                     </div>
                                     <span asp-validation-for="Email" class="help-block"></span>
@@ -135,7 +104,7 @@
                                 <label asp-for="WebUrl" class="col-md-2 control-label">آدرس سایت</label>
                                 @* <label asp-for="WebUrl" class="col-md-2 control-label"></label> *@
                                 <div class="col-md-10">
-                                    <input asp-for="WebUrl" class="form-control" style="direction: ltr;" />
+                                    <input placeholder="http://" asp-for="WebUrl" class="form-control" style="direction: ltr;" />
                                     <span asp-validation-for="WebUrl" class="help-block"></span>
                                 </div>
                             </div>
@@ -166,7 +135,7 @@
                                             <span class="md-click-circle md-click-animate"></span>
                                             <i class="fa fa-check"></i> ذخیره
                                         </button>
-                                        <a class="btn default">
+                                        <a asp-controller="User" asp-action="Index" class="btn default">
                                             <i class="fa fa-remove"></i> انصراف
                                         </a>
                                     </div>

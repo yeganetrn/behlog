@@ -184,6 +184,7 @@
                                 <th>نام کاربری</th>
                                 <th>تاریخ ثبت نام</th>
                                 <th>وضعیت</th>
+                                <th> عملیات</th>
                             </tr>
                         </thead>
                         @foreach (var user in Model.DataSource.Items) {
@@ -218,10 +219,67 @@
                                 <td>@user.UserName </td>
                                 <td>@user.RegisterDateDisplay </td>
                                 <td><span class="@stateClassName">@user.StatusDisplay</span></td>
+                                <td>
+                                    <a style="text-decoration: none;" title="ویرایش" asp-controller="User" asp-action="Edit" asp-route-username="@user.UserName">
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-edit"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+								    </a>
+                                    <a  style="text-decoration: none;" title="تغییر کلمه عبور" data-target="#stack1" data-toggle="modal">
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-key"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+								    </a>
+
+                                    <a style="text-decoration: none;" title="حذف کاربر" class="delete-dialog" id="btnRemove" href="#remove" data-id="@user.Id" data-toggle="modal">
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-trash"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+								    </a>
+                                </td>
                             </tr>
 
                         }
                     </table>
+                    <div id="stack1" class="modal fade" tabindex="-1" data-width="400" aria-hidden="true" style="display: none;">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+											<h4 class="modal-title">تغییر کلمه عبور</h4>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-md-12">
+													<h4>کلمه عبور جدید</h4>
+													<p>
+														<input type="text" class="col-md-12 form-control"  style="margin-bottom: 10px;">
+													</p>
+                                                    <h4>تایید کلمه عبور جدید</h4>
+													<p>
+														<input type="text" class="col-md-12 form-control">
+													</p>
+												</div>
+											</div>
+											<a class="btn green" data-toggle="modal" href="#stack2" style="margin-top: 10px;">
+											ثبت </a>
+                                            <button type="button" data-dismiss="modal" class="btn btn-danger" style="margin-top: 10px;">انصراف</button>
+										</div>
+									</div>
+								</div>
+							</div>
                     </div>
                 }
                 else {

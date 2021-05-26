@@ -65,13 +65,28 @@ namespace Behlog.Web.Admin.ViewModels.Security {
     public class AdminCreateUserViewModel {
         public string Title { get; set; }
         public string Email { get; set; }
-        public UserStatus Status { get; set; }
         public bool Enabled {get; set; }
         public string WebUrl { get; set; }
         public string PhoneNumber { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public string VerifyPassword {get; set;}
         public string Description { get; set; }
     }
 
+
+    public class AdminUpdateUserViewModel {
+        public string Title { get; set; }
+        public string Email { get; set; }
+        public bool Enabled {get; set; }
+        public string WebUrl { get; set; }
+        public string PhoneNumber { get; set; }
+        public string UserName { get; set; }
+        public string Description { get; set; }
+    }
+
+    public class AdminUserChangePasswordViewModel {
+        public string Password { get; set; }
+        public string VerifyPassword { get; set; }
+    }
 }
