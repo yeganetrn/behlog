@@ -66,7 +66,19 @@
                 </div>
             </div>
             <div class="portlet-body">
-                <div class="todo-tasklist">
+                
+
+
+          <table class="table table-bordered">
+         <thead>
+            <tr>
+                <th>عنوان</th>
+                <th>دسته بندی</th>
+                <th>مشخصات</th>
+                <th>وضعیت</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
 
                     @foreach (var post in Model.DataSource.Items) {
                         string stateClassName = "todo-tasklist-item-border-yellow";
@@ -89,50 +101,105 @@
                                 badgeClassName = "success";
                                 break;
                         }
+                       
 
-                        <div class="todo-tasklist-item @stateClassName">
-                            <span class="pull-left"><i class="fa fa-file"></i></span>
+                        <tr>
+                            <td>
                             <div class="todo-tasklist-item-title">
                                 @post.Title
                             </div>
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <span class="todo-tasklist-date"><i class="fa fa-folder"></i>دسته بندی : @post.CategoryTitle</span>
+                            </td>
+
+                            <td>
+                                 <div class="col-sm-8">
+                                    <span class="todo-tasklist-date"> @post.CategoryTitle</span>
                                     @foreach(var tag in post.Tags) {
                                         <span class="todo-tasklist-date"><i class="fa fa-tag"></i>@tag</span>
                                     }
                                 </div>
-                                <div class="col-sm-4" style="text-align: left">
-                                    <a class="btn btn-success" 
+                            </td>
+
+                            <td>
+                                <table class="table table-borderless">
+                                        <tr>
+                                            <td><i class="fa fa-user"></i> ایجادکننده</td>
+                                            <td>@post.CreatorUserTitle</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-calendar"></i> تاریخ ایجاد </td>
+                                            <td>@post.CreateDateDisplay</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-calendar"></i>آخرین تعییر در</td>
+                                            <td>@post.ModifyDateDisplay</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-calendar"></i> تاریخ انتشار</td>
+                                            <td> @if (post.Status == Behlog.Core.Models.Enum.PostStatus.Published) {
+                                                <span class="todo-tasklist-date">
+                                                     : @post.PublishDateDisplay 
+                                                </span>
+                                            }</td>
+                                        </tr>
+                                        <tr>
+                        
+
+                                </table>
+
+                    </td>
+                            <td>
+                                <center><span class="badge badge-@badgeClassName"> @post.StatusDisplay</span></center>
+                            </td>
+                            <td>
+                                <div class="row">
+                            
+                                    <a style="text-decoration: none;" title="ویرایش" 
                                        asp-controller="Post" 
                                        asp-action="Edit" 
-                                       asp-route-id="@post.Id">ویرایش <i class="fa fa-edit"></i>
+                                       asp-route-id="@post.Id">
+
+                                       <div style="margin-right: 10px;" class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-edit"></i>
+                                                </span>
+                                            </div>
+                                       </div>
+
                                     </a>
-                                    <a class="btn btn-primary" 
+                                    <a style="text-decoration: none;" title="مشاهده"
                                        asp-area="" 
                                        asp-controller="Post"
                                        asp-action="Detail"
                                        asp-route-id="@post.Id"
                                        asp-route-postType="@Model.PostTypeSlug"
-                                       asp-route-slug="@post.Slug">مشاهده <i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-danger" href="#">حذف <i class="fa fa-trash-o"></i></a>
+                                       asp-route-slug="@post.Slug">
+                                       <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-eye"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                       </a>
+                                    <a style="text-decoration: none;" title="حذف" href="#">
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-trash"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="todo-tasklist-controls pull-left">
-                                <span class="todo-tasklist-date"><i class="fa fa-user"></i> ایجادکننده : @post.CreatorUserTitle</span>
-                                <span class="todo-tasklist-date"><i class="fa fa-calendar"></i> تاریخ ایجاد :  @post.CreateDateDisplay </span>
-                                <span class="todo-tasklist-date"><i class="fa fa-calendar"></i>آخرین تعییر در @post.ModifyDateDisplay توسط @post.ModifierUserTitle</span>
-                                <span><i class="fa fa-bookmark"></i></span><span class="badge badge-@badgeClassName"> @post.StatusDisplay</span>
-                                @if (post.Status == Behlog.Core.Models.Enum.PostStatus.Published) {
-                                    <span class="todo-tasklist-date">
-                                        <i class="fa fa-calendar"></i> تاریخ انتشار : @post.PublishDateDisplay 
-                                    </span>
-                                }
-                            </div>
-                        </div>
+            
+                            </td>
+                        </tr>
+
                     }
 
                 </div>
+          </table>
             </div>
         </div>
     </div>
