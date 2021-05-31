@@ -153,7 +153,7 @@
                                     <div class="form-group">
                                         <label asp-for="AltTitle" class="col-md-4 control-label"></label>
                                         <div class="col-md-8">
-                                            <input asp-for="AltTitle" class="form-control input-large" />
+                                            <input asp-for="AltTitle" class="form-control" />
                                             <span asp-validation-for="AltTitle" class="help-block"></span>
                                         </div>
                                     </div>
@@ -168,12 +168,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="PublishDateValue" class="col-md-4 control-label"></label>
+                                        <label style="margin-right: 15px;" asp-for="PublishDateValue" class="col-md-4 control-label"></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input asp-for="PublishDateValue" class="form-control input-large" placeholder="تاریخ انتشار" />
+                                            <input asp-for="PublishDateValue" class="form-control" placeholder="تاریخ انتشار" style="width: 197px;" />
                                         </div>
                                         @*<div class="col-md-4">
 
@@ -181,7 +181,8 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-8">
-                                            <input asp-for="Commenting" class="form-control checkbox" /> فعال برای نظر دادن
+                                           فعال برای نظر دادن
+                                            <input asp-for="Commenting" class="form-control checkbox" />
                                             <span asp-validation-for="Commenting" class="help-block"></span>
                                         </div>
                                     </div>

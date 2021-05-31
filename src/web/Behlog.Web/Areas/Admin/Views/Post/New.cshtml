@@ -164,7 +164,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PublishDateValue" class="col-md-3 control-label"></label>
+                                <label style="margin-right: 16px;" asp-for="PublishDateValue" class="col-md-3 control-label"></label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -196,7 +196,8 @@
                             <div class="form-group">
                                 @*<label asp-for="Commenting" class="col-md-2 control-label"></label>*@
                                 <div class="col-md-8">
-                                    <input asp-for="Commenting" class="form-control checkbox" /> فعال برای نظر دادن
+                                    فعال برای نظر دادن
+                                    <input asp-for="Commenting" class="form-control checkbox" />
                                     <span asp-validation-for="Commenting" class="help-block"></span>
                                 </div>
                             </div>
