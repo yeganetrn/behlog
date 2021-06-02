@@ -59,47 +59,113 @@
                     <i class="fa fa-newspaper-o"></i>دسته بندی ها
                 </div>
                 <ul class="nav nav-tabs" style="float: right">
-                    @foreach (var lang in Model.Languages) {
-                        <li class="">
-                            <a href="#tab_@lang.Id" data-toggle="tab" aria-expanded="false">
-                                @lang.Title
-                            </a>
+                @{
+
+                    int i = 0;
+                    foreach (var lang in Model.Languages) {
+                        string liClass = "";
+                        if(i == 0) {
+                            liClass = "active";
+                        }
+                        <li class="@liClass">
+                            @if(i == 0) {
+                                <a href="#tab_@lang.Id" data-toggle="tab" aria-expanded="true">
+                                    @lang.Title
+                                </a>
+                            }
+                            else {
+                                <a href="#tab_@lang.Id" data-toggle="tab" aria-expanded="false">
+                                    @lang.Title
+                                </a>
+                            }
+                            
                         </li>
+                        i++;
                     }
+                }
+                    
                 </ul>
             </div>
-            <div class="portlet-body form">
+            <div class="portlet-body">
                 <div class="tab-content">
-                    @foreach (var lang in Model.Languages) {
-                        <div class="tab-pane" id="tab_@lang.Id" style="float: right">
-                            <div class="row">
-                                <div class="card-group">
-                                    @foreach (var cat in Model.Items.Where(_ => _.LangId == lang.Id)) {
-                                        <div class="card-header">
-                                            @cat.Title
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="card-text">
-                                                @cat.Description
-                                            </p>
-                                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@cat.Id" class="btn btn-primary">
-                                                ویرایش
+                @{
+                    int j =  0;
+                    foreach (var lang in Model.Languages) {
+                        var activeClass = "";
+                        
+                        if(j == 0) {
+                            activeClass = "active";
+                        }
+                        <div class="tab-pane @activeClass" id="tab_@lang.Id">
+                            <div class="">
+                               <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>عنوان دسته‌‌بندی</th>
+                                            <th>وضعیت</th>
+                                            <th>تاریخ ایجاد</th>
+                                            <th>آخرین تغییر</th>
+                                            <th>عملیات</th>
+                                        </tr>
+                                    </thead>
+                                     @foreach (var cat in Model.Items.Where(_ => _.LangId == lang.Id)) {
+                                         var badgeClassName = "";
+                                         switch(cat.Status) {
+                                             case EntityStatus.Deleted: 
+                                                badgeClassName = "danger";
+                                                break;
+                                            case EntityStatus.Disabled:
+                                                badgeClassName = "secondary";
+                                                break;
+                                            case EntityStatus.Enabled:
+                                                badgeClassName = "success";
+                                                break;
+                                         }
+                                        <tr>
+                                            <td>
+                                            <a style="text-decoration: none;" title="ویرایش" asp-controller="Category" asp-action="Edit" asp-route-id="@cat.Id">@cat.Title</a>
+                                            </td>
+                                            <td>
+                                                <center><span class="badge badge-@badgeClassName">@cat.StatusText</span></center>
+                                            </td>
+                                            <td>@cat.CreateDateDisplay</td>
+                                            <td>@cat.ModifyDateDisplay</td>
+                                            <td>
+
+                                            <a style="text-decoration: none;" title="ویرایش" asp-controller="Category" asp-action="Edit" asp-route-id="@cat.Id">
+                                                <div class="input-inline">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-edit"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </a>
-                                        </div>
 
-                                        <div class="card-footer text-muted">
-                                            ایجاد شده در: @cat.CreateDateDisplay
-                                        </div>
+                                            <a style="text-decoration: none;" title="حذف" class="delete-dialog" id="btnRemove" href="#remove" data-id="@cat.Id" data-toggle="modal">
+                                                <div class="input-inline">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-trash"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            </td>
+                                        </tr>   
                                     }
-
-                                </div>
+                                </table>
                             </div>
                         </div>
+                        j++;
                     }
+                }
                 </div>
-                
-               
             </div>
+        
         </div>
     </div>
 </div>
+
+<partial name="_deleteDlg" />
