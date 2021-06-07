@@ -115,6 +115,7 @@ namespace Behlog.Web.Admin.ViewModels.System
             Filter = new CategoryFilterData();
             Languages = new List<LanguageItemViewModel>();
             Items = new List<CategoryListItemViewModel>();
+            CreateModel = new CategoryCreateViewModel();
         }
 
         public string PostTypeSlug { get; set; }
@@ -123,6 +124,7 @@ namespace Behlog.Web.Admin.ViewModels.System
         public IEnumerable<LanguageItemViewModel> Languages { get; set; }
         public IEnumerable<CategoryListItemViewModel> Items { get; set; }
         public CategoryFilterData Filter { get; set; }
+        public CategoryCreateViewModel CreateModel { get; set; }
 
     }
 
