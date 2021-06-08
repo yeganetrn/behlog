@@ -29,7 +29,7 @@
             </button>
             <ul class="dropdown-menu pull-right" role="menu">
                 <li>
-                    <a data-target="#creat1" data-toggle="modal">
+                    <a id="newCategory">
                         <i class="fa fa-plus"></i>دسته بندی جدید
                     </a>
                 </li>
@@ -49,80 +49,13 @@
     </div>
 </div>
 
-<div id="creat1" class="modal fade" tabindex="-1" data-width="400" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">
+<div id="divCreateDialog">
 
-        
-            <div class="portlet box blue-dark">
-                <div class="portlet-title">
-                    <div class="caption">
-                        <i class="fa fa-plus"></i>ایجاد دسته بندی جدید
-                    </div>
-                </div>
-            </div>
-            </div>
-            
-            <div class="modal-body">
-            <form id="myform" asp-controller="Category"
-                      asp-action="New"
-                      asp-antiforgery="true"
-                      method="post" class="form-horizontal">
-                <div class="form-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            
-                    <div class="form-group">
-                        <label asp-for="CreateModel.Title" class="col-md-3 control-label"></label>
-                        <div class="col-md-6">
-                            <input asp-for="CreateModel.Title" class="form-control input-circle-right" />
-                            <span asp-validation-for="CreateModel.Title" class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="CreateModel.Slug" class="col-md-3 control-label"></label>
-                        <div class="col-md-6">
-                            <input asp-for="CreateModel.Slug" class="form-control input-circle-right" />
-                            <span asp-validation-for="CreateModel.Slug" class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="CreateModel.LangId" class="col-md-3 control-label"></label>
-                        <div class="col-md-6">
-                            <select asp-for="CreateModel.LangId" asp-items="Model.CreateModel.LanguageSelectList" class="form-control input-medium">
-                            </select>
-                            <span class="help-block" asp-validation-for="CreateModel.LangId"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="CreateModel.Description" class="col-md-3 control-label"></label>
-                        <div class="col-md-6">
-                            <textarea asp-for="CreateModel.Description" class="form-control input-circle" style="height: 120px"></textarea>
-                            <span class="help-block" asp-validation-for="CreateModel.Description"></span>
-                        </div>
-                    </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-actions col-md-12">
-                            <button type="submit" class="btn green" href="#stack2" style="margin-top: 10px;">
-                                <i class="fa fa-check"></i>ذخیره</button>
-                            <button type="button" data-dismiss="modal" class="btn btn-danger" style="margin-top: 10px;">
-                                <i class="fa fa-remove"></i>انصراف</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
 </div>
-
-
+@* <partial name="_createDialog" />
+<pertial name="_editDialog" /> *@
 <input type="hidden" asp-for="Filter.PostTypeId" />
+<input type="hidden" asp-for="PostTypeSlug" id="postTypeSlug" />
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
     <div class="col-md-12">
@@ -243,3 +176,24 @@
 
 
 <partial name="_deleteDlg" />
+
+@section headSection {
+
+}
+
+@section footerScripts {
+    <script>
+        $(document).ready(function () {
+            $('#newCategory').click(function () {
+                alert('ok');
+                var postTypeSlug = $("#postTypeSlug").value;
+                alert(postTypeSlug);
+                var url = $('#divCreateDialog').data('category/new/' + postTypeSlug);
+                $.get(url, function (data) {
+                    $("#divCreateDialog").html(data);
+                    $("#createDialog").modal('show');
+                });
+        });
+    });
+    </script>
+}

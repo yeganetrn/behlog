@@ -56,7 +56,8 @@ namespace Behlog.Web.Admin.Controllers {
         {
             var _postType = await _postTypeService.GetBySlugAsync(postType);
             var model = new CategoryAdminViewModel {
-                PostTypeId = _postType.Id
+                PostTypeId = _postType.Id,
+                PostTypeSlug = postType
             };
 
             var result = await _categoryService.GetGridDataAsync(
@@ -81,7 +82,7 @@ namespace Behlog.Web.Admin.Controllers {
             var model = await _viewModelProvider
                 .BuildCreateViewModelAsync(postType, null);
 
-            return View(model);
+            return PartialView("_createDialog", model);
         }
 
         [HttpPost("[action]")]
